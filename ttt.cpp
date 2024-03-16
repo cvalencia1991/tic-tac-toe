@@ -3,7 +3,7 @@
 #include "ttp_function.hpp"
 
 int main(){
-	int current_player = 1, number_of_players;
+	int current_player = 1;
 	std::string player1, player2;
 	introduction();
 	draw();
