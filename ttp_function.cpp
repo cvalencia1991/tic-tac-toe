@@ -1,23 +1,19 @@
 #include <iostream>
 #include <vector>
 
-
 std::vector<char> board = {' ',' ',' ',' ',' ',' ', ' ',' ',' '};
-std::string player1, player2;
-
+int position;
+bool start = true;
 
 void introduction(){
 	std::cout << "===============================\n";
-	std::cout << "Welcome to the tic tac toe game\n";
+	std::cout << "Welcome to the tic-tac-toe game\n";
 	std::cout << "===============================\n";
-	std::cout << "\nEnter name player_1: \n";
-	std::cin >> player1;
-	std::cout << "\nEnter name player_2: \n";
-	std::cin >> player2;
+  std::cout << "let's play.\n";
 }
 
-void draw() {
 
+void draw() {
     std::cout << "     |     |      \n";
 
     std::cout << "  " << board[0] << "  |  " << board[1] << "  |  " << board[2] << "\n";
@@ -35,3 +31,53 @@ void draw() {
 
     std::cout << "\n";
 }	
+
+void update_board(int position, int current_player){
+    char symbol = (current_player == 1) ? 'X': '0';
+    board[position] = symbol;
+}
+
+void set_position(int current_player){
+ std::cout << "Enter the position of the tic-tac-toe (1-9): ";
+ std::cin >> position;
+  if(position < 1 || position > 9){
+     std::cout << "Invalid position! Please type a number between 1 and 9.\n";
+  }else if(board[position - 1] != ' '){
+    std::cout << "Position already taken! Please choose another position\n";
+  }else{
+     update_board(position - 1, current_player);
+  }
+}
+
+bool filled_up() {
+    for (char cell : board) {
+        if (cell == ' ') {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool is_winner() {
+    for (int i = 0; i < 3; i++) {
+        if (board[i * 3] != ' ' && board[i * 3] == board[i * 3 + 1] && board[i * 3] == board[i * 3 + 2]) {
+            return true; 
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+        if (board[i] != ' ' && board[i] == board[i + 3] && board[i] == board[i + 6]) {
+            return true; 
+        }
+    }
+
+    if (board[0] != ' ' && board[0] == board[4] && board[0] == board[8]) {
+        return true;
+    }
+    if (board[2] != ' ' && board[2] == board[4] && board[2] == board[6]) {
+        return true; 
+    }
+
+    return false; 
+}
+
