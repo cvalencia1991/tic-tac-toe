@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <cstdlib> 
+#include <ctime> 
 
 std::vector<char> board = {' ',' ',' ',' ',' ',' ', ' ',' ',' '};
 int position;
@@ -9,7 +11,7 @@ void introduction(){
 	std::cout << "===============================\n";
 	std::cout << "Welcome to the tic-tac-toe game\n";
 	std::cout << "===============================\n";
-  std::cout << "let's play.\n";
+  std::cout << "          let's play.          \n";
 }
 
 
@@ -37,16 +39,21 @@ void update_board(int position, int current_player){
     board[position] = symbol;
 }
 
-void set_position(int current_player){
- std::cout << "Enter the position of the tic-tac-toe (1-9): ";
- std::cin >> position;
-  if(position < 1 || position > 9){
-     std::cout << "Invalid position! Please type a number between 1 and 9.\n";
+void set_position(int current_player, std::string current_player_name){
+
+ std::cout << "Enter the position player " << current_player_name << " of the tic-tac-toe (1-9): ";
+ do{
+ if (!(std::cin >> position)) {
+     std::cout << "Invalid input! Please enter a number: ";
+ }else if(position < 1 || position > 9){
+     std::cout << "Invalid position! Please type a number between 1 and 9: ";
   }else if(board[position - 1] != ' '){
-    std::cout << "Position already taken! Please choose another position\n";
+    std::cout << "Position already taken! Please choose another position: ";
   }else{
      update_board(position - 1, current_player);
+     break;
   }
+ }while(true);
 }
 
 bool filled_up() {
@@ -81,3 +88,16 @@ bool is_winner() {
     return false; 
 }
 
+void make_random_move(int current_player) {
+    srand(time(0));
+
+    while (true) {
+        int position = rand() % 9;
+
+        if (board[position] == ' ') {
+            update_board(position, (current_player == 1) ? 'X' : 'O');
+            draw();
+            break;
+        }
+    }
+}
