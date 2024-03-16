@@ -4,8 +4,8 @@
 
 int main(){
 	int current_player = 1;
+	bool start = true;
 	std::string player1, player2;
-
 	introduction();
 	draw();
 
@@ -17,17 +17,19 @@ int main(){
 	std::cin >> current_player;
 	std::string current_player_name = (current_player == 1) ? player1 : player2;
 
-	while(true){
-		set_position(current_player);
+	while(start){
+		set_position(current_player, current_player_name);
 		draw();
 		if (is_winner()){
 		std::cout << "Congratulations! " << current_player_name << " wins!\n";
-		break;
+		start = false;
 	}
 	if(filled_up()){
 		std::cout << "It's a tie!\n";
-		break;
+		start = false;
 	}
 		current_player = (current_player == 1) ? 2 : 1;
+	  current_player_name = (current_player == 1) ? player1 : player2;
 	}
+	return 0;
 }
