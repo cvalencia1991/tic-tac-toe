@@ -11,25 +11,25 @@ void introduction(){
 	std::cout << "===============================\n";
 	std::cout << "Welcome to the tic-tac-toe game\n";
 	std::cout << "===============================\n";
-  std::cout << "          let's play.          \n";
+  std::cout << "         let's play.           \n";
 }
 
 
 void draw() {
-    std::cout << "     |     |      \n";
+    std::cout << "          |     |            \n";
 
-    std::cout << "  " << board[0] << "  |  " << board[1] << "  |  " << board[2] << "\n";
+    std::cout << "       " << board[0] << "  |  " << board[1] << "  |  " << board[2] << "\n";
 
-    std::cout << "_____|_____|_____ \n";
-    std::cout << "     |     |      \n";
+    std::cout << "     _____|_____|_____ \n";
+    std::cout << "          |     |      \n";
 
-    std::cout << "  " << board[3] << "  |  " << board[4] << "  |  " << board[5] << "\n";
+    std::cout << "       " << board[3] << "  |  " << board[4] << "  |  " << board[5] << "\n";
 
-    std::cout << "_____|_____|_____ \n";
-    std::cout << "     |     |      \n";
+    std::cout << "     _____|_____|_____ \n";
+    std::cout << "          |     |      \n";
 
-    std::cout << "  " << board[6] << "  |  " << board[7] << "  |  " << board[8] << "\n";
-    std::cout << "     |     |      \n";
+    std::cout << "       " << board[6] << "  |  " << board[7] << "  |  " << board[8] << "\n";
+    std::cout << "          |     |      \n";
 
     std::cout << "\n";
 }	
@@ -100,4 +100,8 @@ void make_random_move(int current_player) {
             break;
         }
     }
+}
+
+void clearScreen(){
+    std::cout << "\033[2J\033[1;1H";
 }
