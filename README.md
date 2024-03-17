@@ -147,4 +147,4 @@ I would like to thank to codecademy to bring me the idea of develop this project
 
 - **you can develop in any language this game**
 
-  - of course you you can, this is a game in the interface of the terminal so you can create in any language 
+  - Of course you can, this is a game in the interface of the terminal so you can create in any language 
